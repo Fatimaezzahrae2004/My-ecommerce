@@ -1,0 +1,23 @@
+<div class="search-container">
+  <!-- Category Dropdown -->
+  <select [(ngModel)]="selectedCategory" (change)="onCategoryChange($event)">
+    <option value="all">All</option>
+    <option *ngFor="let category of categories" [value]="category.slug">
+      {{ category.name }}
+    </option>
+  </select>
+  
+    <!-- Input de recherche -->
+    <input
+  type="text"
+  class="search-input"
+  placeholder="Search products"
+  [(ngModel)]="searchQuery"
+  (ngModelChange)="onSearchByKey($event)"  
+/>
+
+  
+    
+  
+  
+  

@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { ListeproduitComponent } from "./listeproduit/listeproduit.component";
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet, 
+    RouterModule,  
+    ListeproduitComponent, 
+    NavBarComponent,
+    
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'EmiShop';
-}
+export class AppComponent {}

@@ -1,0 +1,74 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      vertical-align: middle;
+    }
+  
+    th {
+      background-color: #0a7bf5; 
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+  
+    td {
+      font-size: 14px;
+      color: #333;
+  
+      &.price, &.total {
+        font-weight: bold;
+        color: #0776ec; 
+      }
+    }
+  
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  }
+  
+  .table-container {
+    margin: 20px auto;
+    max-width: 80%; 
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .total-row {
+    font-weight: bold;
+    color: #0a7df7;
+  }
+  
+  .quantity-input {
+    width: 60px;
+    text-align: center;
+  }
+  .quantity-input button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff2c2c;
+  }
+  

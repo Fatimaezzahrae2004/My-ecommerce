@@ -1,0 +1,108 @@
+/* Conteneur principal */
+.signup-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Titre du formulaire */
+  .signup-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Style des groupes de formulaire */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Style des labels */
+  .form-group label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style des champs de texte */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Effet au focus sur les champs */
+  .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+    outline: none;
+  }
+  
+  /* Style du bouton */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Effet hover pour le bouton */
+  .btn:hover {
+    background-color: #218838;
+  }
+  
+  /* Désactiver le bouton s'il n'est pas valide */
+  .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Lien pour mot de passe oublié */
+  .signup-container a {
+    text-decoration: none;
+    color: #007bff;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  /* Lien au hover */
+  .signup-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Style des erreurs */
+  .form-group input.ng-invalid.ng-touched {
+    border-color: #dc3545;
+  }
+  
+  .form-group label.ng-invalid.ng-touched {
+    color: #dc3545;
+  }
+  
+  /* Ajouter un peu d'espace entre les éléments */
+  .form-group input,
+  .form-group button {
+    margin-bottom: 10px;
+  }
+  
+  /* Transition douce */
+  .form-control, .btn {
+    transition: all 0.2s ease;
+  }
+  

@@ -1,0 +1,38 @@
+<app-nav-bar [panier]="displayPanier" (panierSelected)="showPanier($event)"></app-nav-bar>
+
+<div *ngIf="message" class="message" [ngClass]="{'success-message': messageType === 'success', 'error-message': messageType === 'error'}">
+  {{ message }}
+</div>
+
+<div *ngIf="commandes.length === 0">
+  <p>Aucune commande trouvée.</p>
+</div>
+
+<table *ngIf="commandes.length > 0">
+  <thead>
+    <tr>
+      <th>ID de la commande</th>
+      <th>Date</th>
+      <th>Total</th>
+      <th>Statut</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let commande of commandes">
+      <td>{{ commande.id }}</td>
+      <td>{{ commande.date }}</td>
+      <td>{{ commande.total | currency:'USD' }}</td>
+      <td>{{ commande.status }}</td>
+      <td>
+        
+        <button (click)="cancelCommande(commande.id)">Annuler</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div *ngIf="panierItems.length > 0">
+  <button (click)="validateCommande()">Valider le panier</button>
+</div>

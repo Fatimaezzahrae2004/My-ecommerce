@@ -1,0 +1,67 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #f3f3f3;
+  padding: 6px;
+  border-radius: 6px; /* Smooth corners */
+  border: 1px solid #dcdcdc; /* Light border similar to Amazon */
+  max-width: 600px;
+  margin: 0 auto; /* Center it */
+}
+
+.category-select {
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  background-color: #f9f9f9; /* Lighter background */
+  border-radius: 6px 0 0 6px; /* Rounded corners on the left */
+  color: #333;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  cursor: pointer; /* Make it look clickable */
+}
+
+.category-select:hover {
+  background-color: #e2e2e2; /* Slight hover effect */
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: 1px solid #dcdcdc;
+  border-left: none; /* Merge with category select */
+  outline: none;
+  font-size: 14px;
+  background-color: white; /* Clean white background */
+  border-radius: 0; /* No rounding here */
+  transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 5px rgba(0, 150, 255, 0.5); /* Subtle glow on focus */
+  border: 1px solid #0073e6; /* Amazon-like blue border on focus */
+}
+
+.search-btn {
+  background-color: #febd69; /* Amazon’s signature orange */
+  border: 1px solid #f3a847;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0; /* Rounded corners on the right */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #f90; /* Darker orange on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow on hover */
+}
+
+.search-btn i {
+  color: #333; /* Icon color */
+}
+
+.search-btn:hover i {
+  color: white; /* Icon changes color on hover */
+}

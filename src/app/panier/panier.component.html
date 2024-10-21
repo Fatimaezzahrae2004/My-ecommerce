@@ -1,0 +1,38 @@
+<app-nav-bar [panier]="displayPanier" (panierSelected)="showPanier($event)"></app-nav-bar>
+<app-panier *ngIf="displayPanier" [detailsPanier]="detailsPanier"></app-panier>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Désignation</th>
+        <th>Prix (USD)</th>
+        <th>Quantité</th>
+        <th>Totale (USD)</th>
+        <th>Action</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of detailsPanier; let i = index">
+        <td>{{ item.produit.description }}</td>
+        <td class="price">{{ item.produit.price }}</td>
+        <td class="quantity-input">
+          <button (click)="decreaseQuantity(i)">-</button>
+          {{ item.qte }}
+          <button (click)="increaseQuantity(i)">+</button>
+        </td>
+        <td class="total">{{ item.qte * item.produit.price }}</td>
+        <td>
+          <button (click)="removeItem(i)">Remove</button>
+        </td>
+      </tr>
+      <tr class="total-row">
+        <td colspan="3" style="text-align: right;">Total :</td>
+        <td>{{ totalPrice }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="validatePanier()" class="btn-validate">Valider le panier</button>
+</div>
+

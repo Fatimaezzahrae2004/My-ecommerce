@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg  ">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">MyE-commerce<i class="bi bi-bag-dash-fill"></i></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/" ><i class="bi bi-house-fill"></i>Home</a>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/panier" ><i class="bi bi-cart4"></i>mon panier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'disabled': !isLoggedIn}" routerLink="/mes-commandes"(click)="onMesCommandesClick($event)" style="cursor: pointer;">
+              <i class="bi bi-box-seam"></i> Mes commandes
+            </a>
+          </li>
+          <!-- Bouton Se connecter (s'affiche si l'utilisateur n'est pas connecté) -->
+          <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link" routerLink="/connexion"><i class="bi bi-person-lines-fill"></i> Se connecter</a>
+          </li>
+
+          <!-- Bouton Se déconnecter (s'affiche si l'utilisateur est connecté) -->
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link" (click)="onLogout()"><i class="bi bi-box-arrow-right"></i> Se déconnecter</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

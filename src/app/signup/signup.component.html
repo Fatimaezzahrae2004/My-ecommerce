@@ -1,0 +1,36 @@
+
+<div class="signup-container">
+    <h2>Créer un compte</h2>
+  
+    <form (ngSubmit)="onSubmitSignup()" #signupForm="ngForm">
+      <!-- Nom complet -->
+      <div class="form-group">
+        <label for="fullName">Nom complet</label>
+        <input type="text" id="fullName" required name="fullName" [(ngModel)]="fullName" class="form-control" placeholder="Entrer votre nom complet">
+      </div>
+  
+      <!-- Adresse e-mail -->
+      <div class="form-group">
+        <label for="signupEmail">Adresse e-mail</label>
+        <input type="email" id="signupEmail" required name="signupEmail" [(ngModel)]="signupEmail" class="form-control" placeholder="Entrer votre email">
+      </div>
+  
+      <!-- Mot de passe -->
+      <div class="form-group">
+        <label for="signupPassword">Mot de passe</label>
+        <input type="password" id="signupPassword" required name="signupPassword" [(ngModel)]="signupPassword" class="form-control" placeholder="Entrer votre mot de passe">
+      </div>
+  
+      <!-- Confirmer mot de passe -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirmer mot de passe</label>
+        <input type="password" id="confirmPassword" required name="confirmPassword" [(ngModel)]="confirmPassword" class="form-control" placeholder="Confirmer votre mot de passe">
+      </div>
+  
+      <!-- Soumettre le formulaire -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="!signupForm.valid">S'inscrire</button>
+      </div>
+    </form>
+  </div>
+  
