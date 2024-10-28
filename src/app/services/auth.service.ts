@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, UserCredential } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
-import { UserInterface } from '../user.interface'; // Ensure this interface is defined correctly
+import { UserInterface } from '../user.interface'; 
 import { signal } from '@angular/core';
 import { user, User } from '@angular/fire/auth';
 
@@ -14,10 +14,10 @@ export class AuthService {
   public currentUserSig = signal<UserInterface | null>(null);
 
   constructor() {
-    // Subscribe to user changes
+    
     this.user$.subscribe((user: User | null) => {
       if (user) {
-        // Update signal with user info when the auth state changes
+       
         this.currentUserSig.set({
           email: user.email || '',
           username: user.displayName || '',
@@ -68,5 +68,9 @@ export class AuthService {
       localStorage.removeItem('username');
       this.currentUserSig.set(null); 
     });
+  }
+  getToken(): string | null {
+    // Récupère le token depuis le stockage local (localStorage, sessionStorage, etc.)
+    return localStorage.getItem('authToken');
   }
 }
