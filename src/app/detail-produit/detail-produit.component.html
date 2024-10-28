@@ -1,0 +1,78 @@
+<app-nav-bar [panier]="displayPanier" (panierSelected)="showPanier($event)"></app-nav-bar>
+<div *ngIf="selectedProduct">
+    <!-- Détails du produit -->
+    <h2>{{ selectedProduct.title }}</h2>
+    <img [src]="selectedProduct.thumbnail" alt="{{ selectedProduct.title }}" class="product-image">
+    <p><strong>Prix :</strong> {{ selectedProduct.price }} $</p>
+    <p><strong>Catégorie :</strong> {{ selectedProduct.category }}</p>
+    <p><strong>Description :</strong> {{ selectedProduct.description }}</p>
+    <p><strong>Stock :</strong> {{ selectedProduct.stock }}</p>
+    <button (click)="addProductToCart()" class="btn btn-success mt-2">Ajouter au panier</button>
+
+    <!-- Formulaire de commentaire -->
+    <h3 class="mt-4">Laisser un commentaire</h3>
+    <form (ngSubmit)="addComment()">
+        <!-- Nom de l'utilisateur -->
+        <div class="form-group">
+            <label for="user">Nom d'utilisateur</label>
+            <input type="text" id="user" required [(ngModel)]="newComment.user" name="user" class="form-control" placeholder="Votre nom" aria-label="Nom d'utilisateur">
+        </div>
+
+        <!-- Date -->
+        <div class="form-group mt-2">
+            <label for="date">Date</label>
+            <input type="date" id="date" [(ngModel)]="newComment.date" name="date" class="form-control" [value]="newComment.date | date:'yyyy-MM-dd'" readonly aria-label="Date">
+        </div>
+
+        <!-- Commentaire -->
+        <div class="form-group mt-2">
+            <label for="commentaire">Commentaire</label>
+            <textarea id="commentaire" required [(ngModel)]="newComment.commentaire" name="commentaire" class="form-control" placeholder="Votre commentaire" aria-label="Commentaire"></textarea>
+        </div>
+
+        <!-- Rating (Note) with Stars -->
+<div class="form-group mt-2">
+    
+    <div class="rating">
+        <span 
+            *ngFor="let star of stars; let i = index"
+            (click)="rate(i + 1)"
+            [class.filled]="i < newComment.rating"
+            class="star"
+            attr.aria-label="{{ i + 1 }} stars"
+
+        >
+            &#9733; 
+        </span>
+    </div>
+</div>
+
+        <!-- Bouton d'envoi -->
+        <button type="submit" class="btn btn-primary mt-3">Soumettre le commentaire</button>
+    </form>
+
+    <!-- Liste des commentaires -->
+<div *ngIf="comments.length > 0" class="comments-section mt-4">
+    <h4>Commentaires :</h4>
+    <div *ngFor="let comment of comments" class="comment-item">
+        <p><strong>{{ comment.user }}</strong> ({{ comment.date | date:'longDate' }}) - Note : 
+            <span class="rating">
+                <span *ngFor="let star of stars; let i = index"
+                      [class.filled]="i < comment.rating"
+                      class="star" attr.aria-label="{{ i + 1 }} stars"
+                      >
+                    &#9733;
+                </span>
+            </span>
+            
+        </p>
+        <p>{{ comment.commentaire }}</p>
+        <hr>
+    </div>
+</div>
+
+
+
+<div *ngIf="!selectedProduct">
+    <p>Produit non trouvé.</p>
+</div>

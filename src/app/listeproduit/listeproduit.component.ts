@@ -31,13 +31,7 @@ export class ListeproduitComponent implements OnInit {
   searchQuery: string = ''; 
   isOpen: boolean = false;
 
-  newComment: { user: string; date: string; commentaire: string; rating: number } = {
-    user: '',
-    date: '',
-    commentaire: '',
-    rating: 0
-  };
-  comments: Array<{ user: string; date: string; commentaire: string; rating: number }> = [];
+  
 
   @ViewChild('productDetailModal') productDetailModal!: ProductDetailModalComponent;
 
@@ -62,7 +56,7 @@ export class ListeproduitComponent implements OnInit {
         console.error('Error fetching categories', error);
       }
     );
-    this.newComment.date = new Date().toISOString().split('T')[0];
+    
   }
 
   // Méthode pour filtrer les produits à la fois par catégorie et par mot clé
@@ -129,19 +123,5 @@ export class ListeproduitComponent implements OnInit {
 
 
 
-  // Method to add a comment
-  addComment(): void {
-    if (this.newComment.user && this.newComment.commentaire && this.newComment.rating) {
   
-      this.comments.push({
-        ...this.newComment,
-        
-        date: this.newComment.date || new Date().toISOString().split('T')[0] 
-      });
-
-      this.newComment = { user: '', date: '', commentaire: '', rating: 0 };
-
-      console.log('Comment added:', this.comments);
-    }
-  }
 }

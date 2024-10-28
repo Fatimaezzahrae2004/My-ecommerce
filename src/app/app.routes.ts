@@ -4,13 +4,15 @@ import { PanierComponent } from './panier/panier.component';
 import { SignupComponent } from './signup/signup.component';
 import { ConnexionComponent } from './connexion/connexion.component';  
 import { CommandesComponent } from './commandes/commandes.component';
+import { DetailProduitComponent } from './detail-produit/detail-produit.component';
 // Définition des routes
 export const routes: Routes = [
   { path: '', component: ListeproduitComponent },  
   { path: 'panier', component: PanierComponent },  
   { path: 'mes-commandes', component: CommandesComponent},  
   { path: 'signup', component: SignupComponent },
-  { path: 'connexion', component: ConnexionComponent },  
+  { path: 'connexion', component: ConnexionComponent }, 
+  { path: 'produit/:id', component: DetailProduitComponent }, 
   { path: '**', redirectTo: '' }  
 ];
 

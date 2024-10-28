@@ -11,7 +11,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-3" *ngFor="let produit of filteredProducts"> 
-        <app-product-item [produit]="produit" (click)="showProductDetails(produit)"></app-product-item>
+        <app-product-item [produit]="produit" ></app-product-item>
+        <a [routerLink]="['/produit', produit.id]" class="btn btn-info">Voir les détails</a>
       </div>
     </div>
   </div>
@@ -20,77 +21,11 @@
 <!-- Panier -->
 <app-panier *ngIf="displayPanier" [detailsPanier]="detailProduit"></app-panier>
 
-<div *ngIf="selectedProduct" class="modal">
-  <div class="modal-content">
-    <span class="close" (click)="closeProductDetails()">&times;</span>
-    <h2>{{ selectedProduct.title }}</h2>
-    <img [src]="selectedProduct.thumbnail" alt="{{ selectedProduct.title }}">
-    <p>Price: {{ selectedProduct.price }} $</p>
-    <p>Category: {{ selectedProduct.category }}</p>
-    <p>Description: {{ selectedProduct.description }}</p>
-    <p>Stock: {{ selectedProduct.stock }}</p>
-    <div class="button-container">
-      <button (click)="addProductToCart()">Ajouter au panier</button>
-    </div>
-  </div>
-  </div>
+
   
 
 <div *ngIf="filteredProducts.length === 0">
   Aucun produit trouvé pour votre recherche ou votre catégorie sélectionnée.
 </div>
 
-<div *ngIf="selectedProduct" class="modal">
-  <div class="modal-content">
-    <span class="close" (click)="closeProductDetails()">&times;</span>
-    <h2>{{ selectedProduct.title }}</h2>
-    <img [src]="selectedProduct.thumbnail" alt="{{ selectedProduct.title }}">
-    <p>Price: {{ selectedProduct.price }} $</p>
-    <p>Category: {{ selectedProduct.category }}</p>
-    <p>Description: {{ selectedProduct.description }}</p>
-    <p>Stock: {{ selectedProduct.stock }}</p>
-    <div class="button-container">
-      <button (click)="addProductToCart()">Ajouter au panier</button>
-    </div>
-    <!-- Formulaire de commentaire -->
-    <h3>Laisser un commentaire</h3>
-    <form (ngSubmit)="addComment()">
-      <!-- Nom de l'utilisateur -->
-      <div class="form-group">
-        <label for="user">Nom d'utilisateur</label>
-        <input type="text" id="user" required [(ngModel)]="newComment.user" name="user" class="form-control" placeholder="Votre nom">
-      </div>
 
-      
-      <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" id="date" [(ngModel)]="newComment.date" name="date" class="form-control" [value]="newComment.date | date:'yyyy-MM-dd'" readonly>
-      </div>
-
-      <!-- Commentaire -->
-      <div class="form-group">
-        <label for="commentaire">Commentaire</label>
-        <textarea id="commentaire" required [(ngModel)]="newComment.commentaire" name="commentaire" class="form-control" placeholder="Votre commentaire"></textarea>
-      </div>
-
-      <!-- Rating (Note) -->
-      <div class="form-group">
-        <label for="rating">Note</label>
-        <input type="number" id="rating" required [(ngModel)]="newComment.rating" name="rating" class="form-control" min="1" max="5" placeholder="Note (1-5)">
-      </div>
-
-      <!-- Bouton d'envoi -->
-      <button type="submit" class="btn btn-primary">Soumettre le commentaire</button>
-    </form>
-
-    <!-- Liste des commentaires -->
-    <div *ngIf="comments.length > 0" class="comments-section">
-      <h4>Commentaires :</h4>
-      <div *ngFor="let comment of comments">
-        <p><strong>{{ comment.user }}</strong> ({{ comment.date | date:'longDate' }}) - Note : {{ comment.rating }}/5</p>
-        <p>{{ comment.commentaire }}</p>
-        <hr>
-      </div>
-    </div>
-  </div>
-</div>

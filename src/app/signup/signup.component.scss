@@ -1,108 +1,76 @@
-/* Conteneur principal */
+/* Style pour le conteneur principal du formulaire */
 .signup-container {
-    width: 100%;
     max-width: 400px;
-    margin: 50px auto;
-    background-color: #f7f7f7;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-  }
-  
-  /* Titre du formulaire */
-  .signup-container h2 {
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .signup-container h2 {
     color: #333;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
   
-  /* Style des groupes de formulaire */
-  .form-group {
-    margin-bottom: 15px;
+  /* Style pour les messages d'erreur */
+  .signup-container div.error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
   }
   
-  /* Style des labels */
-  .form-group label {
-    font-weight: bold;
-    font-size: 14px;
-    color: #555;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  /* Style des champs de texte */
-  .form-control {
+  /* Style pour les champs de formulaire */
+  .signup-container input[type="text"],
+  .signup-container input[type="password"] {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
+    margin: 0.5rem 0;
+    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    transition: border-color 0.3s ease;
+    box-sizing: border-box;
   }
   
-  /* Effet au focus sur les champs */
-  .form-control:focus {
-    border-color: #28a745;
-    box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+  .signup-container input[type="text"]:focus,
+  .signup-container input[type="password"]:focus {
+    border-color: #007bff;
     outline: none;
   }
   
-  /* Style du bouton */
-  .btn {
+  /* Style pour le bouton de soumission */
+  .signup-container button[type="submit"] {
     width: 100%;
-    padding: 12px;
-    background-color: #28a745;
-    color: white;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
-  /* Effet hover pour le bouton */
-  .btn:hover {
-    background-color: #218838;
+  .signup-container button[type="submit"]:hover {
+    background-color: #0056b3;
   }
   
-  /* Désactiver le bouton s'il n'est pas valide */
-  .btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+  /* Animation d'apparition */
+  .signup-container {
+    animation: fadeIn 0.8s ease-in-out;
   }
   
-  /* Lien pour mot de passe oublié */
-  .signup-container a {
-    text-decoration: none;
-    color: #007bff;
-    display: inline-block;
-    margin-top: 10px;
-  }
-  
-  /* Lien au hover */
-  .signup-container a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Style des erreurs */
-  .form-group input.ng-invalid.ng-touched {
-    border-color: #dc3545;
-  }
-  
-  .form-group label.ng-invalid.ng-touched {
-    color: #dc3545;
-  }
-  
-  /* Ajouter un peu d'espace entre les éléments */
-  .form-group input,
-  .form-group button {
-    margin-bottom: 10px;
-  }
-  
-  /* Transition douce */
-  .form-control, .btn {
-    transition: all 0.2s ease;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   

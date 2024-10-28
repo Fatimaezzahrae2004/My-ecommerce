@@ -38,6 +38,15 @@ export class ProductService {
   getProductBykey(text : string){
     return this.http.get(`https://dummyjson.com/products/search?q=${text}`)
   }
+  // Récupérer un produit par ID
+  getProductById(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error fetching product by ID:', error);
+        return throwError(() => new Error('Failed to fetch product by ID'));
+      })
+    );
+  }
 }
   
   
