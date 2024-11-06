@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LignePanier } from '../../Modeles/LignePanier';
-
+import { Firestore, collection, addDoc, doc } from '@angular/fire/firestore';
+import { Commande } from '../../Modeles/commande';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,10 +9,17 @@ export class PanierService {
   private storageKey = 'panier'; 
   
   private localStorageKey = 'panier'; 
+  private commandesCollection;
+  constructor(private firestore: Firestore) {
+    this.commandesCollection = collection(this.firestore, 'commandes');
+  }
 
-  constructor() {
-   
-    this.loadPanierFromStorage();
+
+ 
+  saveCommande(commande: Commande): Promise<void> {
+    return addDoc(this.commandesCollection, commande)
+      .then(() => console.log('Commande enregistrée avec succès'))
+      .catch((error) => console.error('Erreur lors de l\'enregistrement de la commande :', error));
   }
 
   addToPanier(lignePanier: LignePanier): void {
@@ -21,10 +29,10 @@ export class PanierService {
     const existingProductIndex = currentPanier.findIndex(item => item.produit.id === lignePanier.produit.id);
     
     if (existingProductIndex !== -1) {
-      // Si le produit existe déjà, incrémentez la quantité
+      
       currentPanier[existingProductIndex].qte += lignePanier.qte; 
     } else {
-      // Sinon, ajoutez le nouvel article
+   
       currentPanier.push(lignePanier);
     }
 
@@ -49,7 +57,7 @@ export class PanierService {
     }
   }
 
-  // Saves the current cart to Local Storage
+  
   private savePanierToStorage(panier: LignePanier[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(panier));
   }

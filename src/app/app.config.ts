@@ -5,8 +5,10 @@ import { ProductService } from './services/product.service';
 import { provideHttpClient } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';  
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore'; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-kYuyC8Ye-0L_lqRc9agDlbRdrJj--zE",
@@ -27,9 +29,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     importProvidersFrom(
       AngularFireModule.initializeApp(firebaseConfig),
-      AngularFireAuthModule
+      AngularFireAuthModule,
+      AngularFirestoreModule  
     ),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())  
   ]
 };

@@ -4,9 +4,7 @@
   {{ message }}
 </div>
 
-<div *ngIf="commandes.length === 0">
-  <p>Aucune commande trouvée.</p>
-</div>
+
 
 <table *ngIf="commandes.length > 0">
   <thead>
@@ -20,13 +18,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let commande of commandes">
-      <td>{{ commande.id }}</td>
+      <td>{{ commande.idUser }}</td>
       <td>{{ commande.date }}</td>
       <td>{{ commande.total | currency:'USD' }}</td>
       <td>{{ commande.status }}</td>
       <td>
         
-        <button (click)="cancelCommande(commande.id)">Annuler</button>
+        <button (click)="cancelCommande(commande.idUser)">Annuler</button>
       </td>
     </tr>
   </tbody>

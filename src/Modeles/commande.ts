@@ -3,7 +3,7 @@
 import { LignePanier } from './LignePanier'; 
 
 export interface Commande {
-  id: number;
+  idUser: number;
   date: string; 
   total: number; 
   items: LignePanier[]; 

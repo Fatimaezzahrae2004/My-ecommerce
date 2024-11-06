@@ -1,23 +1,21 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, UserCredential } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, UserCredential, signOut, user, User } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
 import { UserInterface } from '../user.interface'; 
-import { signal } from '@angular/core';
-import { user, User } from '@angular/fire/auth';
+import { signal } from '@angular/core'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private firebaseAuth = inject(Auth);
-  public user$ = user(this.firebaseAuth);
-  public currentUserSig = signal<UserInterface | null>(null);
+  private firebaseAuth = inject(Auth); 
+  public currentUserSig = signal<UserInterface | null>(null); 
+  public user$ = user(this.firebaseAuth); 
 
   constructor() {
     
-    this.user$.subscribe((user: User | null) => {
+    this.user$.subscribe((user: User | null) => { 
       if (user) {
-       
         this.currentUserSig.set({
           email: user.email || '',
           username: user.displayName || '',
@@ -25,6 +23,15 @@ export class AuthService {
       } else {
         this.currentUserSig.set(null); 
       }
+    });
+  }
+
+  
+  isLoggedIn(): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      this.firebaseAuth.onAuthStateChanged((user: User | null) => { 
+        observer.next(!!user); 
+      });
     });
   }
 
@@ -38,15 +45,15 @@ export class AuthService {
         return Promise.resolve(); 
       });
 
-    return from(promise);
+    return from(promise); 
   }
 
-  
+
   login(email: string, password: string): Observable<void> {
     const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password)
       .then(() => {
-        localStorage.setItem('authToken', 'some-token'); 
-        localStorage.setItem('username', email);
+        localStorage.setItem('authToken', 'some-token');  
+        localStorage.setItem('username', email);  
       })
       .catch((error) => {
         console.error('Login failed:', error);
@@ -63,14 +70,15 @@ export class AuthService {
 
   
   logout(): Promise<void> {
-    return this.firebaseAuth.signOut().then(() => {
+    return signOut(this.firebaseAuth).then(() => {
       localStorage.removeItem('authToken'); 
-      localStorage.removeItem('username');
-      this.currentUserSig.set(null); 
+      localStorage.removeItem('username'); 
+      this.currentUserSig.set(null);
     });
   }
+
+  
   getToken(): string | null {
-    // Récupère le token depuis le stockage local (localStorage, sessionStorage, etc.)
-    return localStorage.getItem('authToken');
+    return localStorage.getItem('authToken'); 
   }
 }

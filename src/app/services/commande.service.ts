@@ -1,26 +1,47 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Commande } from '../../Modeles/commande';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LignePanier } from '../../Modeles/LignePanier';
-
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeService {
-  private commandes: Commande[] = [];
+ 
+  private commandesCollection: AngularFirestoreCollection<Commande>;
+  commandes$: Observable<Commande[]>;
 
-  getCommandes(): Commande[] {
-    return this.commandes;
+  constructor(private firestore: AngularFirestore) {
+    
+    this.commandesCollection = this.firestore.collection<Commande>('commandes');
+
+    
+    this.commandes$ = this.commandesCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Commande;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
   }
 
-  validateCommande(panierItems: LignePanier[], total: number): Commande {
+ 
+  getCommandes(): Observable<Commande[]> {
+    return this.commandes$;
+  }
+
+  
+  async validateCommande(panierItems: LignePanier[], total: number): Promise<void> {
     const newCommande: Commande = {
-      id: this.commandes.length + 1,
+      idUser: Date.now(), 
       date: new Date().toISOString(),
       total: total,
       status: 'Validée',
       items: panierItems
     };
-    this.commandes.push(newCommande);
-    return newCommande;
+
+    
+    await this.commandesCollection.add(newCommande);
   }
 }
